@@ -31,45 +31,60 @@ class _AnimePageState extends State<AnimePage> {
             ),
             const SizedBox(height: 24),
             LinearProgressIndicator(value: vus / total),
+            if (vus == total)
+              const Text(
+                'Terminé !',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
+              ),
+
             const SizedBox(height: 32),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // À vous : le bouton -1
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      if (vus > 0) {
-                        vus--;
-                      }
-                    });
-                  },
+                ElevatedButton.icon(
+                  onPressed: vus > 0
+                      ? () {
+                          setState(() {
+                            vus--;
+                          });
+                        }
+                      : null,
+                  icon: const Icon(Icons.remove),
+                  label: const Text('1'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,
+                    disabledBackgroundColor: Colors.grey,
                   ),
-                  child: const Text('-1'),
                 ),
                 // À vous : le bouton Zéro
-                ElevatedButton(
+                ElevatedButton.icon(
                   onPressed: () {
                     setState(() {
                       vus = 0;
                     });
                   },
-                  child: const Text('Zéro'),
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Zéro'),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      if (vus < total) {
-                        vus++;
-                      }
-                    });
-                  },
+                //+1
+                ElevatedButton.icon(
+                  onPressed: vus < total
+                      ? () {
+                          setState(() {
+                            vus++;
+                          });
+                        }
+                      : null,
+                  icon: const Icon(Icons.add),
+                  label: const Text('1'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.lightGreen,
                   ),
-                  child: const Text('+1'),
                 ),
               ],
             ),
