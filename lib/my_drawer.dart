@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'anime_page.dart';
+import 'liste_page.dart';
 import 'login_page.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -30,7 +30,7 @@ class MyDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const AnimePage()),
+                MaterialPageRoute(builder: (context) => const ListePage()),
               );
             },
           ),

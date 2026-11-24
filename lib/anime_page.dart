@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AnimePage extends StatefulWidget {
-  const AnimePage({super.key});
+  final String titre;
+  final int total;
+  const AnimePage({super.key, required this.titre, required this.total});
 
   @override
   State<AnimePage> createState() => _AnimePageState();
@@ -9,7 +11,6 @@ class AnimePage extends StatefulWidget {
 
 class _AnimePageState extends State<AnimePage> {
   int vus = 0;
-  final int total = 37;
 
   @override
   Widget build(BuildContext context) {
@@ -20,31 +21,24 @@ class _AnimePageState extends State<AnimePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Death Note',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
+             Text( widget.titre,
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
 
-            const Text(
-              'Épisodes vus',
-              style: TextStyle(color: Colors.grey),
-            ),
+            const Text('Épisodes vus', style: TextStyle(color: Colors.grey)),
 
             const SizedBox(height: 16),
 
             Text(
-              '$vus / $total',
+              '$vus / $widget.total',
               style: Theme.of(context).textTheme.displayMedium,
             ),
 
             const SizedBox(height: 24),
 
-            LinearProgressIndicator(value: vus / total),
+            LinearProgressIndicator(value: vus / widget.total),
 
-            if (vus == total)
+            if (vus == widget.total)
               const Text(
                 'Terminé !',
                 style: TextStyle(
@@ -59,7 +53,6 @@ class _AnimePageState extends State<AnimePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
                 // À vous : le bouton -1
                 ElevatedButton.icon(
                   onPressed: () {
@@ -90,7 +83,7 @@ class _AnimePageState extends State<AnimePage> {
                 //+1
                 ElevatedButton.icon(
                   onPressed: () {
-                    if (vus < total) {
+                    if (vus < widget.total) {
                       setState(() {
                         vus++;
                       });
