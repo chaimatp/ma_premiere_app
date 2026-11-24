@@ -30,7 +30,7 @@ class _AnimePageState extends State<AnimePage> {
             const SizedBox(height: 16),
 
             Text(
-              '$vus / $widget.total',
+              '$vus / ${widget.total}',
               style: Theme.of(context).textTheme.displayMedium,
             ),
 

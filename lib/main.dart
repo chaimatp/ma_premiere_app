@@ -8,7 +8,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'home_page.dart';
 import 'login_page.dart';
 
 late SharedPreferences prefs;
@@ -23,13 +23,14 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    final connecte = prefs.getBool('connecte') ?? false;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorSchemeSeed: Color.fromARGB(255, 124, 91, 138),
         appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF876297)),
       ),
-      home: const LoginPage(),
+      home: connecte ? const HomePage() : const LoginPage(),
     );
   }
 }

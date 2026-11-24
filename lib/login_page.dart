@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'main.dart';
 import 'home_page.dart';
+
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -53,6 +54,7 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
+                prefs.setBool('connecte', true);
                 ScaffoldMessenger.of(context)
                     .showSnackBar(const SnackBar(content: Text('Bienvenue !')));
                 Navigator.pushReplacement(
